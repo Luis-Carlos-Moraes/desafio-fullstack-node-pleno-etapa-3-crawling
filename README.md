@@ -1,4 +1,4 @@
-# README — Etapa 3 (Crawling/Extração – Node.js)
+# Etapa 3 (Crawling/Extração – Node.js)
 
 ## Desafio
 
