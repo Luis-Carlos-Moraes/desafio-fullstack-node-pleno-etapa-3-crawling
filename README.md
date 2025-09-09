@@ -29,66 +29,6 @@ Desenvolver uma solução em **Node.js** que **extraia informações** da págin
 
 > **Boas práticas:** lidar com timeouts, retries simples e mudanças leves no HTML da página alvo.
 
-## Como começar
-
-```bash
-mkdir etapa-3-crawling && cd etapa-3-crawling
-npm init -y
-npm i axios cheerio express archiver dotenv
-# opcional: puppeteer (se preferir headless browser)
-# npm i puppeteer
-```
-
-## Estrutura sugerida
-
-```
-etapa-3-crawling/
-  src/
-    server.js            (expor /extract e /download)
-    extractor.js         (lógica de scraping)
-    downloader.js        (download em lote, com retries)
-    zipper.js            (gera ZIP/unificado)
-    logger.js            (logs simples)
-  downloads/             (arquivos baixados)
-  output/
-    unificado.zip        (ou unificado.txt)
-  .env.example
-  README.md
-```
-
-### `.env.example`
-
-```
-PORT=3002
-TARGET_URL=http://omnissolucoes.com/teste3/
-```
-
-## Endpoints sugeridos
-
-* **GET `/extract`** → retorna JSON com `{ arquivos: [{ nome, url, codigo }] }`.
-* **POST `/download`** → realiza o download em lote (ou dispara um job simples) e retorna status/sumário.
-* **GET `/download`** → retorna o **arquivo unificado** (ex.: `application/zip`).
-
-> Você pode unificar o fluxo em um único endpoint se preferir. O importante é conseguir **extrair**, **baixar** e **disponibilizar** o **unificado**.
-
-## Como rodar localmente
-
-```bash
-cp .env.example .env
-npm install
-npm start
-# servidor em http://localhost:3002
-
-# 1) ver a extração
-curl http://localhost:3002/extract
-
-# 2) baixar (separado, caso implemente assim)
-curl -X POST http://localhost:3002/download
-
-# 3) baixar o arquivo unificado
-curl -L http://localhost:3002/download --output unificado.zip
-```
-
 ## Tratamento de erros (mínimo esperado)
 
 * Timeout na página alvo.
