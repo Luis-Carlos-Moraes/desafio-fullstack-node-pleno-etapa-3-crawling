@@ -44,7 +44,9 @@ async function extractFiles(url) {
         return;
       }
 
-      items.push({ code, name, fullUrl: href });
+      const fullUrl = href ? new URL(href, TARGET_URL).href : null;
+
+      items.push({ code, name, fullUrl });
     });
 
     return items;
