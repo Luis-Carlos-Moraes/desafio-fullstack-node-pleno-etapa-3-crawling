@@ -1,10 +1,11 @@
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
+const fs = require("fs");
+const path = require("path");
 
 const PORT = 3000;
 const TARGET_URL = "http://omnissolucoes.com/teste3/";
-
 
 /* 
 <ul>
@@ -12,40 +13,57 @@ const TARGET_URL = "http://omnissolucoes.com/teste3/";
 <a href="FT1.pdf" codigo="FT1" download>
 */
 
+const LOG_FILE = path.join(__dirname, "error.log");
+
 const app = express();
 
-async function extractFiles(url) {
-  const { data } = await axios.get(url, { timeout: 10000 });
-  const $ = cheerio.load(data);
-  const base = new URL(url).href.replace(/\/[^/]*$/, "/");
+function logError(message) {
+  const timestamp = new Date().toISOString();
+  const logMessage = `[${timestamp}] ${message}\n`;
 
-  return $("a")
-    .toArray()
-    .map((el) => {
-      const $el = $(el);
-      const href = $el.attr("href");
-      if (!href) return null;
-
-      const name = $el.closest("li").text().trim() || $el.text().trim() || href;
-
-      return {
-        name,
-        code: $el.attr("codigo"),
-        fullUrl: new URL(href, base).toString(),
-      };
-    })
-    .filter(Boolean);
+  fs.appendFileSync(LOG_FILE, logMessage);
 }
 
-app.get("/run", async (req, res) => {
+async function extractFiles(url) {
   try {
-    const items = await extractFiles(TARGET_URL);
+    const { data } = await axios.get(url, { timeout: 10000 });
+    const $ = cheerio.load(data);
 
-    res.json({ ok: true, count: items.length, files: items });
+    const items = [];
+
+    $("li").each((_, li) => {
+      const $li = $(li);
+      const text = $li.clone().children().remove().end().text().trim();
+
+      const [code, ...nameParts] = text.split(/\s*-\s*/);
+      const name = nameParts.join(" - ").trim();
+      const href = $li.find("a").attr("href");
+
+      if (!code || !name || !href) {
+        logError(`Formato inesperado no <li>: "${text}"`);
+        return;
+      }
+
+      items.push({ code, name, fullUrl: href });
+    });
+
+    return items;
   } catch (err) {
-    res.status(500).json({ ok: false, error: err.message });
+    logError(`Erro ao acessar ${url}: ${err.message}`);
+
+    throw new Error(`Falha ao acessar a página alvo: ${err.message}`);
   }
-});
+}
+
+(async () => {
+  try {
+    const files = await extractFiles(TARGET_URL);
+    console.log(`Arquivos encontrados: ${files.length}`);
+    console.table(files);
+  } catch (err) {
+    console.error(err.message);
+  }
+})();
 
 app.listen(PORT, () =>
   console.log(`Servidor rodando em http://localhost:${PORT}`)
