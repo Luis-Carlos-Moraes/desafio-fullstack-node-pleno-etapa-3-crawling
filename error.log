@@ -1,3 +1,16 @@
 [2025-09-25T18:15:54.697Z] Erro ao acessar http://oaaamnissolucoes.com/teste3/: getaddrinfo ENOTFOUND oaaamnissolucoes.com
 [2025-09-25T18:16:01.819Z] Erro ao acessar http://oaaamnissolucoes.com/teste3/: getaddrinfo ENOTFOUND oaaamnissolucoes.com
 [2025-09-25T18:16:03.019Z] Erro ao acessar http://oaaamnissolucoes.com/teste3/: getaddrinfo ENOTFOUND oaaamnissolucoes.com
+[2025-09-25T18:38:00.872Z] Erro ao baixar undefined: DOWNLOAD_DIR is not defined
+[2025-09-25T18:40:30.414Z] Erro ao baixar http://omnissolucoes.com/teste3/FT1.pdf: DOWNLOAD_DIR is not defined
+[2025-09-25T18:40:30.416Z] Erro ao baixar http://omnissolucoes.com/teste3/FH1.pdf: DOWNLOAD_DIR is not defined
+[2025-09-25T18:40:30.416Z] Erro ao baixar http://omnissolucoes.com/teste3/AXL.pdf: DOWNLOAD_DIR is not defined
+[2025-09-25T18:40:30.421Z] Erro ao baixar http://omnissolucoes.com/teste3/ZTT.pdf: DOWNLOAD_DIR is not defined
+[2025-09-25T18:40:30.421Z] Erro ao baixar http://omnissolucoes.com/teste3/FTR.pdf: DOWNLOAD_DIR is not defined
+[2025-09-25T18:40:30.422Z] Erro ao baixar http://omnissolucoes.com/teste3/AAA.pdf: DOWNLOAD_DIR is not defined
+[2025-09-25T18:41:21.873Z] Erro ao baixar http://omnissolucoes.com/teste3/FT1.pdf: pipeline is not defined
+[2025-09-25T18:41:21.955Z] Erro ao baixar http://omnissolucoes.com/teste3/FH1.pdf: pipeline is not defined
+[2025-09-25T18:41:22.123Z] Erro ao baixar http://omnissolucoes.com/teste3/AXL.pdf: pipeline is not defined
+[2025-09-25T18:41:22.214Z] Erro ao baixar http://omnissolucoes.com/teste3/ZTT.pdf: pipeline is not defined
+[2025-09-25T18:41:22.292Z] Erro ao baixar http://omnissolucoes.com/teste3/FTR.pdf: pipeline is not defined
+[2025-09-25T18:41:22.399Z] Erro ao baixar http://omnissolucoes.com/teste3/AAA.pdf: pipeline is not defined
