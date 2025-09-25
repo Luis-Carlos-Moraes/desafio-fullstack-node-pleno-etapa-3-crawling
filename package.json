@@ -1,0 +1,18 @@
+{
+  "name": "desafio-fullstack-node-pleno-etapa-3-crawling",
+  "version": "1.0.0",
+  "description": "Desenvolver uma solução em **Node.js** que **extraia informações** da página alvo, **baixe** os arquivos encontrados, **unifique** e disponibilize um **link de download** do arquivo unificado.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "axios": "^1.12.2",
+    "cheerio": "^1.1.2",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0"
+  }
+}
