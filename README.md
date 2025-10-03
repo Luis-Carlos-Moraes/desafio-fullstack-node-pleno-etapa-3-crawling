@@ -47,5 +47,3 @@ Desenvolver uma solução em **Node.js** que **extraia informações** da págin
 * Publique em **repositório público** no GitHub e envie o link.
 
 ---
-
-Se quiser, eu também preparo três **`.env.example`** e **sugestões de commits** padronizados (feat/chore/docs) para cada etapa.
